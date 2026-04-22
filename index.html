@@ -914,9 +914,8 @@
     };
 
     /* ─────────────────────────────────────────
-       NEWSLETTER FORM
-       Replace the fetch() body with your
-       newsletter provider endpoint URL
+       NEWSLETTER FORM — posts to Cloud Function
+       which proxies the request to Beehiiv API
        ───────────────────────────────────────── */
     function handleNewsletterSubmit(e) {
       e.preventDefault();
@@ -925,13 +924,24 @@
       if (!email) return;
 
       const btn = form.querySelector('button');
-      btn.textContent = 'Done ✓';
+      btn.textContent = 'Subscribing...';
       btn.disabled = true;
       form.email.disabled = true;
 
-      // TODO: swap console.log for a real POST to your newsletter provider
-      // fetch('https://your-provider-endpoint.com', { method: 'POST', body: new FormData(form) })
-      console.log('Newsletter signup:', email);
+      fetch('https://europe-west2-ocheeflow.cloudfunctions.net/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Subscription failed');
+        btn.textContent = 'Done ✓';
+      })
+      .catch(() => {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        form.email.disabled = false;
+      });
     }
 
     /* Wire up every element that has a data-link attribute */
