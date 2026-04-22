@@ -6,7 +6,7 @@ Static landing page for the Ocheeflow brand. Live at [ocheeflow.com](https://och
 
 - Vanilla HTML, CSS, JavaScript — no frameworks or build step
 - Hosted on GitHub Pages
-- Custom domain via GoDaddy DNS
+- Custom domain managed via GoDaddy DNS
 - Newsletter signups proxied to Beehiiv via a Google Cloud Function
 
 ## Structure
@@ -14,7 +14,7 @@ Static landing page for the Ocheeflow brand. Live at [ocheeflow.com](https://och
 ```
 ocheeflow-landing/
 ├── index.html           # All markup and inline styles
-├── styles.css           # (currently unused — CSS lives in index.html)
+├── styles.css
 ├── white-icon.png       # Brand logo (white)
 ├── texture_background.png
 └── CNAME                # GitHub Pages custom domain config
@@ -29,7 +29,7 @@ ocheeflow-landing/
 | Words We Live By | Jamaican phrases and brand mottos |
 | Who This Is For | Target audience copy |
 | Free Guide | Payhip download link (update in `LINKS` config) |
-| Newsletter | Email signup form → Cloud Function → Beehiiv |
+| Newsletter | Email signup form wired to Beehiiv |
 
 ## Updating Links
 
@@ -43,16 +43,6 @@ const LINKS = {
 };
 ```
 
-The newsletter form posts to the Cloud Function defined in `ocheeflow-subscribe`.
-
 ## Deployment
 
 Hosted on GitHub Pages from the `main` branch. Pushing to `main` deploys automatically.
-
-DNS is managed in GoDaddy with four A records pointing to GitHub Pages IPs:
-```
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
