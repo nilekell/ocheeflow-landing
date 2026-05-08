@@ -692,6 +692,94 @@
 
       footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
     }
+
+    /* ── GUIDE MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-card {
+      background: var(--brand);
+      border: 1px solid var(--border);
+      max-width: 460px;
+      width: 100%;
+      padding: 3rem 2.5rem 2.5rem;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.4rem;
+      background: none;
+      border: none;
+      color: var(--dim);
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      font-family: 'Roboto', sans-serif;
+      transition: color 0.2s;
+    }
+
+    .modal-close:hover { color: var(--white); }
+
+    .modal-card h3 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+    }
+
+    .modal-card > p {
+      color: var(--off-white);
+      font-size: 0.92rem;
+      margin-bottom: 2rem;
+    }
+
+    .modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .modal-form input {
+      padding: 1rem 1.4rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .modal-form input::placeholder { color: var(--dim); }
+    .modal-form input:focus {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .modal-note {
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      color: var(--dim);
+      letter-spacing: 0.05em;
+    }
+
+    .modal-success { text-align: center; padding: 1rem 0 0.5rem; }
   </style>
 </head>
 <body>
@@ -718,7 +806,7 @@
     </div>
 
     <div class="hero-actions">
-      <a href="#guide" class="btn btn-primary">Get the Free Guide</a>
+      <a href="#" class="btn btn-primary" data-open-guide-modal>Get the Free Guide</a>
     </div>
 
     <div class="hero-social">
@@ -822,7 +910,7 @@
         <div class="who-cta">
           <p>If that's you — you're already in flow.</p>
           <p class="sub">For people who train because it's non-negotiable. Who prioritise whole foods because they genuinely don't want anything else.</p>
-          <a href="#newsletter" class="btn btn-primary">Stay in the loop</a>
+          <a href="#" class="btn btn-primary" data-open-newsletter-modal>Stay in the loop</a>
         </div>
       </div>
     </div>
@@ -840,7 +928,7 @@
         <p>
           Everything you need to align your training, nutrition, and recovery — distilled into one simple resource.
         </p>
-        <a href="#" target="_blank" rel="noopener" class="btn btn-primary">Download Free →</a>
+        <a href="#" class="btn btn-primary" data-open-guide-modal>Download Free →</a>
       </div>
       <div class="guide-right" style="border: 1px solid var(--border); padding: 3rem 2.5rem;">
         <p style="font-size:0.7rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--dim); margin-bottom:1.5rem;">Inside the guide</p>
@@ -868,7 +956,7 @@
       <p class="section-label" style="text-align:center;">Stay in the Loop</p>
       <h2>Flow doesn't<br/>stop here.</h2>
       <p>
-        Drop your email. Get honest content on training, whole foods, recovery, and the Ocheeflow mindset — straight to your inbox. No noise.
+        Drop your email. Get honest content on training, whole foods, recovery, and the Ocheeflow mindset — straight to your inbox. Every week. No noise.
       </p>
       <form
         class="newsletter-form"
@@ -884,7 +972,7 @@
         />
         <button type="submit">Subscribe</button>
       </form>
-      <p class="form-note">No spam. Just flow. Unsubscribe anytime.</p>
+      <p class="form-note">No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
@@ -902,6 +990,46 @@
     <p style="font-size:0.7rem; color:var(--dim); letter-spacing:0.06em;">© 2026 Ocheeflow. All rights reserved.</p>
   </footer>
 
+  <!-- NEWSLETTER MODAL -->
+  <div class="modal-overlay" id="newsletterModal" role="dialog" aria-modal="true" aria-labelledby="newsletterModalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="newsletterModalClose" aria-label="Close">×</button>
+      <h3 id="newsletterModalTitle">Stay in<br/>the Loop</h3>
+      <p>Honest content on training, whole foods, recovery, and the Ocheeflow mindset — straight to your inbox. No noise.</p>
+      <form class="modal-form" id="newsletterModalForm" novalidate>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          autocomplete="email"
+        />
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Subscribe</button>
+      </form>
+      <p class="modal-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
+  <!-- GUIDE MODAL -->
+  <div class="modal-overlay" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <h3 id="guideModalTitle">Get the<br/>Free Guide</h3>
+      <p>Drop your email and we'll send it straight to your inbox.</p>
+      <form class="modal-form" id="guideModalForm" novalidate>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          autocomplete="email"
+        />
+        <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send me the guide</button>
+      </form>
+      <p class="modal-note">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+
   <script>
     /* ─────────────────────────────────────────
        BRAND LINKS — update these in one place
@@ -909,7 +1037,6 @@
     const LINKS = {
       instagram: 'https://www.instagram.com/ocheeflow/',
       tiktok:    'https://www.tiktok.com/@ocheeflow',
-      // payhip: 'https://payhip.com/...'   ← add your guide URL here
     };
 
     /* ─────────────────────────────────────────
@@ -942,6 +1069,130 @@
         form.email.disabled = false;
       });
     }
+
+    /* ─────────────────────────────────────────
+       GUIDE MODAL
+       ───────────────────────────────────────── */
+    const guideModal = document.getElementById('guideModal');
+
+    function openGuideModal() {
+      guideModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      guideModal.querySelector('input[type="email"]').focus();
+    }
+
+    function closeGuideModal() {
+      guideModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-open-guide-modal]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); openGuideModal(); });
+    });
+
+    document.getElementById('modalClose').addEventListener('click', closeGuideModal);
+
+    guideModal.addEventListener('click', e => {
+      if (e.target === guideModal) closeGuideModal();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeGuideModal(); closeNewsletterModal(); }
+    });
+
+    document.getElementById('guideModalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const email = form.email.value.trim();
+      if (!email) return;
+
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      form.email.disabled = true;
+
+      fetch('https://europe-west2-ocheeflow.cloudfunctions.net/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('failed');
+        const card = guideModal.querySelector('.modal-card');
+        card.innerHTML = `
+          <button class="modal-close" onclick="closeGuideModal()" aria-label="Close">×</button>
+          <div class="modal-success">
+            <h3 style="margin-bottom:1rem;">Check your inbox.</h3>
+            <p style="color:var(--off-white); font-size:0.95rem;">The guide is on its way. Welcome to the community.</p>
+          </div>
+        `;
+      })
+      .catch(() => {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        form.email.disabled = false;
+      });
+    });
+
+    /* ─────────────────────────────────────────
+       NEWSLETTER MODAL
+       ───────────────────────────────────────── */
+    const newsletterModal = document.getElementById('newsletterModal');
+
+    function openNewsletterModal() {
+      newsletterModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      newsletterModal.querySelector('input[type="email"]').focus();
+    }
+
+    function closeNewsletterModal() {
+      newsletterModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-open-newsletter-modal]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); openNewsletterModal(); });
+    });
+
+    document.getElementById('newsletterModalClose').addEventListener('click', closeNewsletterModal);
+
+    newsletterModal.addEventListener('click', e => {
+      if (e.target === newsletterModal) closeNewsletterModal();
+    });
+
+    document.getElementById('newsletterModalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = this;
+      const email = form.email.value.trim();
+      if (!email) return;
+
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Subscribing...';
+      btn.disabled = true;
+      form.email.disabled = true;
+
+      fetch('https://europe-west2-ocheeflow.cloudfunctions.net/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('failed');
+        const card = newsletterModal.querySelector('.modal-card');
+        card.innerHTML = `
+          <button class="modal-close" onclick="closeNewsletterModal()" aria-label="Close">×</button>
+          <div class="modal-success">
+            <h3 style="margin-bottom:1rem;">You're in.</h3>
+            <p style="color:var(--off-white); font-size:0.95rem;">Welcome to the community. Flow incoming.</p>
+          </div>
+        `;
+      })
+      .catch(() => {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+        form.email.disabled = false;
+      });
+    });
 
     /* Wire up every element that has a data-link attribute */
     document.querySelectorAll('[data-link]').forEach(el => {
