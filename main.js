@@ -1,4 +1,5 @@
 const SUBSCRIBE_URL = 'https://europe-west2-ocheeflow.cloudfunctions.net/subscribe';
+const GUIDE_URL = 'https://ocheeflow.com/The%20Ocheeflow%20Guide.pdf';
 
 /* ─────────────────────────────────────────
    BRAND LINKS — update these in one place
@@ -41,7 +42,12 @@ function handleNewsletterSubmit(e) {
   form.email.disabled = true;
 
   subscribe(email)
-    .then(() => { btn.textContent = 'Done ✓'; })
+    .then(() => {
+      form.innerHTML = `
+        <p style="color:var(--white); font-size:0.95rem; margin-bottom:1rem;">You're in. Welcome to the community.</p>
+        <a href="${GUIDE_URL}" target="_blank" rel="noopener" class="btn btn-primary">Download the Guide →</a>
+      `;
+    })
     .catch(() => {
       btn.textContent = 'Try again';
       btn.disabled = false;
@@ -93,8 +99,9 @@ document.getElementById('guideModalForm').addEventListener('submit', function(e)
       guideModal.querySelector('.modal-card').innerHTML = `
         <button class="modal-close" onclick="closeGuideModal()" aria-label="Close">×</button>
         <div class="modal-success">
-          <h3 style="margin-bottom:1rem;">Check your inbox.</h3>
-          <p style="color:var(--off-white); font-size:0.95rem;">The guide is on its way. Welcome to the community.</p>
+          <h3 style="margin-bottom:1rem;">You're in.</h3>
+          <p style="color:var(--off-white); font-size:0.95rem; margin-bottom:1.5rem;">Welcome to the community. Your guide is ready.</p>
+          <a href="${GUIDE_URL}" target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-block;">Download the Guide →</a>
         </div>
       `;
     })
@@ -148,7 +155,8 @@ document.getElementById('newsletterModalForm').addEventListener('submit', functi
         <button class="modal-close" onclick="closeNewsletterModal()" aria-label="Close">×</button>
         <div class="modal-success">
           <h3 style="margin-bottom:1rem;">You're in.</h3>
-          <p style="color:var(--off-white); font-size:0.95rem;">Welcome to the community. Flow incoming.</p>
+          <p style="color:var(--off-white); font-size:0.95rem; margin-bottom:1.5rem;">Welcome to the community. Your guide is ready.</p>
+          <a href="${GUIDE_URL}" target="_blank" rel="noopener" class="btn btn-primary" style="display:inline-block;">Download the Guide →</a>
         </div>
       `;
     })
