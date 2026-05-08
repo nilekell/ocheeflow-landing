@@ -789,8 +789,8 @@
     <a href="#" class="nav-logo"><img src="white-icon.png" alt="Ocheeflow" style="height:80px; display:block;" /></a>
     <ul class="nav-links">
       <li><a href="#who">Philosophy</a></li>
-      <li><a href="#guide">Free Guide</a></li>
-      <li><a href="#newsletter">Newsletter</a></li>
+      <li><a href="#" data-open-guide-modal>Free Guide</a></li>
+      <li><a href="#" data-open-newsletter-modal>Newsletter</a></li>
       <li><a href="#" data-link="instagram" class="nav-cta">Instagram</a></li>
     </ul>
   </nav>
@@ -1014,8 +1014,8 @@
   <div class="modal-overlay" id="guideModal" role="dialog" aria-modal="true" aria-labelledby="guideModalTitle">
     <div class="modal-card">
       <button class="modal-close" id="modalClose" aria-label="Close">×</button>
-      <h3 id="guideModalTitle">Get the<br/>Free Guide</h3>
-      <p>Drop your email and we'll send it straight to your inbox.</p>
+      <h3 id="guideModalTitle">Before<br/>you go.</h3>
+      <p>Nile wrote a guide. It's free. It covers the six petals — the only framework you'll ever need for training, eating, and recovering like a human being.</p>
       <form class="modal-form" id="guideModalForm" novalidate>
         <input
           type="email"
@@ -1026,7 +1026,7 @@
         />
         <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send me the guide</button>
       </form>
-      <p class="modal-note">No spam. Unsubscribe anytime.</p>
+      <p class="modal-note">No spam. Just flow. Unsubscribe anytime.</p>
     </div>
   </div>
 
@@ -1084,6 +1084,7 @@
     function closeGuideModal() {
       guideModal.classList.remove('open');
       document.body.style.overflow = '';
+      sessionStorage.setItem('of_popup_closed', '1');
     }
 
     document.querySelectorAll('[data-open-guide-modal]').forEach(el => {
@@ -1118,6 +1119,7 @@
       })
       .then(res => {
         if (!res.ok) throw new Error('failed');
+        localStorage.setItem('of_subscribed', '1');
         const card = guideModal.querySelector('.modal-card');
         card.innerHTML = `
           <button class="modal-close" onclick="closeGuideModal()" aria-label="Close">×</button>
@@ -1193,6 +1195,17 @@
         form.email.disabled = false;
       });
     });
+
+    /* ─────────────────────────────────────────
+       AUTO POPUP — fires after 5s on first visit
+       ───────────────────────────────────────── */
+    setTimeout(function() {
+      if (localStorage.getItem('of_subscribed')) return;
+      if (sessionStorage.getItem('of_popup_closed')) return;
+      if (guideModal.classList.contains('open')) return;
+      if (newsletterModal.classList.contains('open')) return;
+      openGuideModal();
+    }, 5000);
 
     /* Wire up every element that has a data-link attribute */
     document.querySelectorAll('[data-link]').forEach(el => {
