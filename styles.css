@@ -207,17 +207,17 @@ section {
   margin-bottom: 1.5rem;
 }
 
-/* ── PRINCIPLES ── */
-.principles-section {
+/* ── RHYTHMS ── */
+.rhythms-section {
   border-top: 1px solid var(--border);
 }
 
-.principles-header {
+.rhythms-header {
   max-width: 600px;
   margin-bottom: 4rem;
 }
 
-.principles-header h2 {
+.rhythms-header h2 {
   font-size: clamp(1.8rem, 4vw, 3.2rem);
   font-weight: 900;
   text-transform: uppercase;
@@ -225,42 +225,42 @@ section {
   line-height: 1.1;
 }
 
-.principles-header p {
+.rhythms-header p {
   color: var(--off-white);
   margin-top: 1rem;
   font-size: 0.95rem;
 }
 
-.principles-grid {
+.rhythms-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1px;
   border: 1px solid var(--border);
 }
 
-.principle-item {
+.rhythm-item {
   padding: 2.5rem 2rem;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
-.principle-item:nth-child(3n) { border-right: none; }
+.rhythm-item:nth-child(3n) { border-right: none; }
 
-.principle-item summary {
+.rhythm-item summary {
   list-style: none;
   cursor: pointer;
 }
 
-.principle-item summary::-webkit-details-marker { display: none; }
+.rhythm-item summary::-webkit-details-marker { display: none; }
 
-.principle-num {
+.rhythm-num {
   font-size: 0.65rem;
   letter-spacing: 0.2em;
   color: var(--dim);
   margin-bottom: 1rem;
 }
 
-.principle-item h3 {
+.rhythm-item h3 {
   font-size: 1.3rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -271,7 +271,7 @@ section {
   gap: 1rem;
 }
 
-.principle-item h3::after {
+.rhythm-item h3::after {
   content: '+';
   font-weight: 300;
   font-size: 1.4rem;
@@ -280,12 +280,12 @@ section {
   flex-shrink: 0;
 }
 
-.principle-item[open] h3::after {
+.rhythm-item[open] h3::after {
   transform: rotate(45deg);
   color: var(--white);
 }
 
-.principle-body {
+.rhythm-body {
   font-size: 0.88rem;
   line-height: 1.7;
   color: var(--off-white);
@@ -647,9 +647,9 @@ footer {
 
   .hero { padding: 8rem 6vw 5rem; }
 
-  .principles-grid { grid-template-columns: 1fr 1fr; }
-  .principle-item:nth-child(3n) { border-right: 1px solid var(--border); }
-  .principle-item:nth-child(2n) { border-right: none; }
+  .rhythms-grid { grid-template-columns: 1fr 1fr; }
+  .rhythm-item:nth-child(3n) { border-right: 1px solid var(--border); }
+  .rhythm-item:nth-child(2n) { border-right: none; }
 
   .newsletter-form { flex-direction: column; }
   .newsletter-form input {
