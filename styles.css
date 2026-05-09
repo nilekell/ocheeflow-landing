@@ -87,18 +87,45 @@ nav {
   flex-direction: column;
   justify-content: center;
   padding: 10rem 5vw 6rem;
+  position: relative;
+  background-image: url('hero-bg.jpeg');
+  background-size: cover;
+  background-position: 70% center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.hero-watermark {
+  position: absolute;
+  bottom: -5%;
+  right: 8vw;
+  transform: translateX(50%);
+  width: 60vw;
+  opacity: 0.12;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(196, 1, 75, 0.45);
+  pointer-events: none;
 }
 
 .hero-body {
   max-width: 680px;
   margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-philosophy p {
   font-size: clamp(1rem, 1.6vw, 1.2rem);
   line-height: 1.85;
   color: var(--off-white);
-  margin-bottom: 1.4rem;
+  margin-bottom: 2.4rem;
 }
 
 .hero-statement {
@@ -113,12 +140,15 @@ nav {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-scroll {
   position: absolute;
   left: 5vw;
   bottom: 4rem;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 0.8rem;
