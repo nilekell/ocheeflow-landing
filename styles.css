@@ -73,7 +73,7 @@ nav {
 .nav-cta {
   border: 1px solid var(--white) !important;
   padding: 0.4rem 1.1rem;
-  border-radius: 2px;
+  border-radius: 6px;
   color: var(--white) !important;
   transition: background 0.2s, color 0.2s !important;
 }
@@ -92,8 +92,8 @@ nav {
   padding: 10rem 5vw 6rem;
   position: relative;
   background-image: url('hero-bg.jpeg');
-  background-size: cover;
-  background-position: 70% center;
+  background-size: 100%;
+  background-position: 70% 20%;
   background-repeat: no-repeat;
   overflow: hidden;
 }
@@ -118,7 +118,7 @@ nav {
 }
 
 .hero-body {
-  max-width: 680px;
+  max-width: 544px;
   margin-bottom: 3rem;
   position: relative;
   z-index: 1;
@@ -126,6 +126,7 @@ nav {
 
 .hero-philosophy p {
   font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 400;
   line-height: 1.85;
   color: var(--off-white);
   margin-bottom: 2.4rem;
@@ -173,12 +174,12 @@ nav {
   display: inline-block;
   padding: 0.85rem 2.2rem;
   font-family: 'Roboto', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: 6px;
   transition: all 0.2s;
   cursor: pointer;
 }
@@ -200,7 +201,7 @@ section {
 }
 
 .section-label {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--dim);
@@ -219,7 +220,7 @@ section {
 
 .rhythms-header h2 {
   font-size: clamp(1.8rem, 4vw, 3.2rem);
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1.1;
@@ -228,7 +229,7 @@ section {
 .rhythms-header p {
   color: var(--off-white);
   margin-top: 1rem;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
 }
 
 .rhythms-grid {
@@ -254,7 +255,7 @@ section {
 .rhythm-item summary::-webkit-details-marker { display: none; }
 
 .rhythm-num {
-  font-size: 0.65rem;
+  font-size: 1.2rem;
   letter-spacing: 0.2em;
   color: var(--dim);
   margin-bottom: 1rem;
@@ -262,7 +263,7 @@ section {
 
 .rhythm-item h3 {
   font-size: 1.3rem;
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: flex;
@@ -301,9 +302,10 @@ section {
 
 .phrases-section h2 {
   font-size: clamp(1.8rem, 4vw, 3.2rem);
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: -0.01em;
+  line-height: 1.1;
   margin-bottom: 3rem;
 }
 
@@ -335,6 +337,29 @@ section {
   flex-shrink: 0;
 }
 
+/* ── LIFESTYLE IMAGES ── */
+.lifestyle-section {
+  border-top: 1px solid var(--border);
+  min-height: 70vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 0;
+}
+
+.lifestyle-section::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: rgba(196, 1, 75, 0.45);
+  pointer-events: none;
+}
+
+.lifestyle-1 {
+  background-image: url('lifestyle-1.png');
+}
+
 /* ── WHO IT'S FOR ── */
 .who-section {
   border-top: 1px solid var(--border);
@@ -349,7 +374,7 @@ section {
 
 .who-left h2 {
   font-size: clamp(2.2rem, 5vw, 4.5rem);
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -384,6 +409,54 @@ section {
   margin-bottom: 1.5rem;
 }
 
+/* ── FOUNDERS ── */
+.founders-section {
+  border-top: 1px solid var(--border);
+  background-image: url('founders.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  padding: 7rem 5vw;
+}
+
+.founders-section::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: rgba(196, 1, 75, 0.45);
+  pointer-events: none;
+}
+
+.founders-body {
+  position: relative;
+  z-index: 1;
+  max-width: 320px;
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 6px;
+}
+
+.founders-body .section-label {
+  color: var(--brand);
+}
+
+.founders-body p:not(.section-label) {
+  font-size: 0.98rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.75);
+  margin-bottom: 1.2rem;
+}
+
+.founders-body p:last-child {
+  margin-bottom: 0;
+}
+
 /* ── FREE GUIDE ── */
 .guide-section {
   border-top: 1px solid var(--border);
@@ -399,7 +472,7 @@ section {
 
 .guide-left h2 {
   font-size: clamp(2rem, 4.5vw, 3.8rem);
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -409,12 +482,11 @@ section {
 .guide-left h2 span {
   display: block;
   font-weight: 100;
-  font-style: italic;
 }
 
 .guide-left p {
   color: var(--off-white);
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   line-height: 1.8;
   margin-bottom: 2rem;
 }
@@ -433,7 +505,7 @@ section {
 
 .newsletter-inner h2 {
   font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1.1;
@@ -520,7 +592,7 @@ footer {
 
 .footer-tagline {
   font-size: 0.75rem;
-  color: var(--dim);
+  color: var(--white);
   letter-spacing: 0.1em;
 }
 
@@ -541,6 +613,17 @@ footer {
 }
 
 .footer-links a:hover { color: var(--white); }
+
+.footer-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  filter: brightness(0) invert(1);
+  opacity: 0.55;
+  transition: opacity 0.2s;
+}
+
+.footer-links a:hover .footer-icon { opacity: 1; }
 
 /* ── MODALS ── */
 .modal-overlay {
@@ -585,7 +668,7 @@ footer {
 
 .modal-card h3 {
   font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 900;
+  font-weight: 300;
   text-transform: uppercase;
   letter-spacing: -0.01em;
   line-height: 1.05;
