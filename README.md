@@ -39,7 +39,6 @@ All brand URLs are defined once in the `LINKS` object in `index.html`:
 const LINKS = {
   instagram: 'https://www.instagram.com/ocheeflow/',
   tiktok:    'https://www.tiktok.com/@ocheeflow',
-  // payhip: 'https://payhip.com/...'
 };
 ```
 
