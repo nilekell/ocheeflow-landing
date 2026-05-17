@@ -8,7 +8,7 @@
   --border: rgba(255,255,255,0.18);
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   background-color: var(--brand);
@@ -717,6 +717,7 @@ footer {
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   nav { padding: 1.2rem 4vw; }
+  .nav-logo img { height: 52px !important; }
 
   .nav-links { gap: 1.2rem; }
   .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
@@ -728,11 +729,24 @@ footer {
 
   .hero-scroll { display: none; }
 
-  .hero { padding: 8rem 6vw 5rem; }
+  .hero { padding: 8rem 6vw 5rem; min-height: auto; }
 
-  .rhythms-grid { grid-template-columns: 1fr 1fr; }
-  .rhythm-item:nth-child(3n) { border-right: 1px solid var(--border); }
-  .rhythm-item:nth-child(2n) { border-right: none; }
+  .hero-philosophy p { margin-bottom: 1.2rem; }
+  .hero-body { margin-bottom: 1.8rem; }
+
+  .hero-actions .btn {
+    font-size: 0.78rem;
+    padding: 0.65rem 1.4rem;
+    letter-spacing: 0.12em;
+  }
+
+  .rhythms-grid { grid-template-columns: 1fr; }
+  .rhythm-item { border-right: none; padding: 1.8rem 1.2rem; }
+
+  .founders-section { justify-content: flex-end; padding: 5rem 0 0; }
+  .founders-body { width: 87.5%; max-width: none; margin: 0 auto 4vw; padding: 1rem 1.2rem; }
+  .founders-body .section-label { margin-bottom: 0.5rem; }
+  .founders-body p:not(.section-label) { font-size: 0.78rem; line-height: 1.5; margin-bottom: 0.6rem; }
 
   .newsletter-form { flex-direction: column; }
   .newsletter-form input {
@@ -741,5 +755,5 @@ footer {
   }
   .newsletter-form button { padding: 0.9rem; }
 
-  footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+  footer { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
 }
